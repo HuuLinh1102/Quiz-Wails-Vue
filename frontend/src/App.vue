@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style>
-</style>-->
+</style>  -->
 
 
 <template>
@@ -91,4 +91,8 @@ export default {
     }
   }
 };
-</script>
+</script>  
+
+<style>
+
+</style>

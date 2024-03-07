@@ -57,14 +57,22 @@ func handleAPI(w http.ResponseWriter, r *http.Request) {
 			DapAnDung     string   `json:"dap_an_dung"`
 		}{
 			{
-				NoiDungCauHoi: "Căn bậc hai của 4 là gì?",
+				NoiDungCauHoi: "Câu 1: Căn bậc hai của 4 là gì?",
 				LuaChon:       []string{"1", "2", "3", "4"},
 				DapAnDung:     "2",
 			},
 			{
-				NoiDungCauHoi: "Căn bậc hai của 9 là gì?",
+				NoiDungCauHoi: "Câu 2: Căn bậc hai của 9 là gì?",
 				LuaChon:       []string{"1", "2", "3", "4"},
 				DapAnDung:     "3",
+			},
+			{
+				NoiDungCauHoi: "Câu 3: Trung ương Đảng đã chọn ngày 19/12/1946 là ngày quyết định phát động toàn quốc kháng chiến tại",
+				LuaChon: []string{"cuộc họp của Ban Chấp hành Trung ương Đảng sau khi ta kí Hiệp định Sơ bộ (6/3/1946).",
+					"cuộc họp của Ban Chấp hành Trung ương Đảng sau khi Hội nghị trù bị ở Đà Lạt thất bại (tháng 6/1946).",
+					"cuộc họp của Ban Chấp hành Trung ương Đảng sau khi Hội nghị trù bị ở Đà Lạt thất bại (tháng 5/1946).",
+					"cuộc họp của Ban Chấp hành Trung ương Đảng sau khi Hội nghị trù bị ở Đà Lạt thất bại (tháng 7/1946)."},
+				DapAnDung: "cuộc họp của Ban Chấp hành Trung ương Đảng sau khi Hội nghị trù bị ở Đà Lạt thất bại (tháng 7/1946).",
 			},
 		},
 	}

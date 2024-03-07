@@ -1,16 +1,39 @@
 <template>
-  <div v-if="examMetadata">
-    <h1>{{ examMetadata.ten_de_thi }}</h1>
-    <div v-for="(question, index) in examQuestions" :key="index">
+  <div  v-if="examMetadata">
+    <h1 class="text-center">{{ examMetadata.ten_de_thi }}</h1>
+    <div class="" v-for="(question, index) in examQuestions" :key="index">
       <Question :question="question.noi_dung_cau_hoi" :choices="question.lua_chon" @answer-selected="updateSelectedAnswer(index, $event)" />
     </div>
-    <button @click="completeExam">Hoàn thành</button>
-    <p v-if="showResults">{{ examResults }}</p>
+    <!-- <div class="d-flex align-items-center flex flex-row justify-between">
+      <div class="nav-time me-4">
+        <span class="fw-bold fs-5"><i class="far fa-clock mx-2"></i><span id="timer">00:00:00</span></span>
+      </div>
+    </div>
+    <div>
+      <button @click="completeExam()" id="btn-nop-bai" class="btn btn-hero btn-primary" role="button"><i class="far fa-file-lines me-1"></i> Nộp bài</button>
+    </div> -->
+      <div class="container d-flex justify-content-between align-items-center py-2">
+          <div class="nav-center nav-time me-4">
+            <span class="fw-bold"><i class="far fa-clock mx-2"></i><span id="timer">00:00:00</span></span>
+
+          </div>
+          <div class="nav-right d-flex align-items-center">
+              <button @click="completeExam()" id="btn-nop-bai" class="btn btn-hero btn-primary" role="button"><i class="far fa-file-lines me-1"></i> Nộp bài</button>
+          </div>
+      </div>
+      <!-- <div class="text-center ">
+
+        <p  v-if="showResults">{{ examResults }}</p>
+      </div> -->
+        <span class="score " v-if="showResults">{{ examResults }}</span>
+
   </div>
 </template>
 
+
+
 <script>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import Question from './Question.vue';
 
 export default {
@@ -41,7 +64,10 @@ export default {
   },
   methods: {
     updateSelectedAnswer(index, choice) {
-      this.$set(this.examQuestions[index], 'selectedAnswer', choice);
+     this.examQuestions[index] = reactive({
+        ...this.examQuestions[index],
+        selectedAnswer: choice
+      });
     },
     completeExam() {
       const score = this.calculateScore();
@@ -56,3 +82,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.score {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(233, 17, 17);
+  display: flex;
+  justify-content: center;
+}
+</style>
+
