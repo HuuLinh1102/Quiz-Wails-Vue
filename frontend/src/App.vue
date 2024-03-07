@@ -1,25 +1,42 @@
-<script setup>
-//import HelloWorld from './components/HelloWorld.vue'
- import HomeView from './views/HomeView.vue'
-</script>
-
+// OKELA
 <template>
-  
-  <HelloWorld/>
-
-  <HomeView/>
+  <div id="app">
+    <Exam :examData="examData" />
+  </div>
 </template>
 
+<script>
+import Exam from './Exam.vue';
+
+export default {
+  components: {
+    Exam
+  },
+  data() {
+    return {
+      examData: {}
+    };
+  },
+  created() {
+    // Fetch data from API
+    this.fetchExamData();
+  },
+  methods: {
+    async fetchExamData() {
+      try {
+        const response = await fetch('http://localhost:8080/api/de_thi');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data from API');
+        }
+        this.examData = await response.json();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+};
+</script>  
+
 <style>
-#logo {
-  display: block;
-  width: 50%;
-  height: 50%;
-  margin: auto;
-  padding: 10% 0 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-origin: content-box;
-}
+
 </style>
