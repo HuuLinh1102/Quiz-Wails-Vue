@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import Question from './Question.vue';
 
 export default {
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     updateSelectedAnswer(index, choice) {
-      this.$set(this.examQuestions[index], 'selectedAnswer', choice);
+      this.examQuestions[index] = reactive({ ...this.examQuestions[index], selectedAnswer: choice });
     },
     completeExam() {
       const score = this.calculateScore();
