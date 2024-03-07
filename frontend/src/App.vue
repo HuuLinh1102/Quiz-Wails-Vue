@@ -1,3 +1,4 @@
+
 <template>
   <div id="app">
     <Exam :examData="examData" />
@@ -34,4 +35,8 @@ export default {
     }
   }
 };
-</script>
+</script>  
+
+<style>
+
+</style>
