@@ -7,8 +7,9 @@
     </div>
       <div class="container d-flex justify-content-between align-items-center py-2">
           <div class="nav-center nav-time me-4">
-            <span class="font-bold"><i class="far fa-clock mx-2"></i><span id="timer">{{ timer }}</span></span>
+            <span class="fw-bold fs-5"><i class="far fa-clock mx-2"></i><span id="timer">{{ timer }}</span></span>
           </div>
+
           <div class="nav-right d-flex align-items-center">
               <button @click="completeExam()" id="btn-nop-bai" class="btn btn-hero btn-primary" role="button"><i class="far fa-file-lines me-1"></i> Nộp bài</button>
           </div>
