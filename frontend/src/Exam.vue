@@ -1,6 +1,6 @@
 <template>
   <div  v-if="examMetadata">
-    <h1 class="text-center">{{ examMetadata.ten_de_thi }}</h1>
+    <h1 class="dethi text-center">{{ examMetadata.ten_de_thi }}</h1>
     <div class="" v-for="(question, index) in examQuestions" :key="index">
       <Question :question="question.noi_dung_cau_hoi" :choices="question.lua_chon" @answer-selected="updateSelectedAnswer(index, $event)" />
     </div>
@@ -91,5 +91,8 @@ export default {
   display: flex;
   justify-content: center;
 }
-</style>
 
+.dethi {
+  font-size: 24px;
+}
+</style>
