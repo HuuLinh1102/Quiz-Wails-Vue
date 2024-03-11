@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+// OKELA
+>>>>>>> d269b33faecef6f5448f8f88ab2a2654c659ae97
 <template>
   <div id="app">
     <Exam :examData="examData" />
