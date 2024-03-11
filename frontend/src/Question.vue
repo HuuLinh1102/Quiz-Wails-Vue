@@ -3,10 +3,7 @@
     <p class="">{{ question }}</p>
     <ul>
       <li v-for="(choice, index) in choices" :key="index" @click="selectAnswer(choice)">
-        <!-- <input type="radio" :value="choice" v-model="selectedAnswer">{{ choice }} -->
-
         <input v-model="selectedAnswer" :value="choice" type="radio"/> {{ choice }}
-        
       </li>
     </ul>
   </div>

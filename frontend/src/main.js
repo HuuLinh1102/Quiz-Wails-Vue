@@ -1,6 +1,6 @@
 import {createApp} from 'vue'
 import App from './App.vue'
-import './style.css';
+import '../src/style.css';
 
 // VueSweetalert2
 import VueSweetalert2 from "vue-sweetalert2";
