@@ -14,6 +14,16 @@
         "noi_dung_cau_hoi": "Căn bậc hai của 4 là gì?",
         "lua_chon": ["1", "2", "3", "4"],
         "dap_an_dung": "2"
+      },
+      {
+        "noi_dung_cau_hoi": "Căn bậc hai của 9 là gì?",
+        "lua_chon": ["1", "2", "3", "4"],
+        "dap_an_dung": "3"
+      },
+      {
+        "noi_dung_cau_hoi": "Căn bậc hai của 9 là gì?",
+        "lua_chon": ["1", "2", "3", "4"],
+        "dap_an_dung": "3"
       }
     ]
   }
