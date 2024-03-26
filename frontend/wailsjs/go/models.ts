@@ -14,6 +14,7 @@ export namespace model {
 	        this.content = source["content"];
 	    }
 	}
+	
 	export class Question {
 	    content: string;
 	    choices: Choice[];

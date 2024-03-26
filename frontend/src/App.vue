@@ -1,44 +1,50 @@
-<<<<<<< HEAD
-// OKELA
-=======
->>>>>>> da1697b (fix)
 <template>
-  <div id="app">
+  <!-- <div id="app">
+    <Information />
     <Exam :examData="examData" />
-  </div>
+    <ImportFile @exam-data-imported="onExamDataImported" />
+  </div> -->
+
+  <router-view></router-view>
 </template>
 
 <script>
-import ExamVue from './Exam.Vue';
+// import Exam from './views/Exam.vue';
+// // import Information from './Information.vue';
 
-export default {
-  components: {
-    ExamVue
-  },
-  data() {
-    return {
-      examData: {} // Khởi tạo examData là một đối tượng trống
-    };
-  },
-  created() {
-    // Gọi phương thức loadQuestions từ app.go để tải dữ liệu câu hỏi
-    this.loadQuestions();
-  },
-  methods: {
-    async loadQuestions() {
-      try {
-        // Gọi phương thức LoadQuestions từ app.go thông qua Wails
-        const response = await this.$wails.Call("LoadQuestions");
-        // Gán dữ liệu câu hỏi nhận được từ app.go vào examData
-        this.examData = { danh_sach_cau_hoi: response };
-      } catch (error) {
-        console.error('Error loading questions:', error);
-      }
-    }
-  }
-};
+// export default {
+
+//   components: {
+//     Exam
+//   },
+//   data() {
+//     return {
+//       examData: {}
+//     };
+//   },
+
+//   created() {
+//     // Fetch data from API
+//     this.fetchExamData();
+//   },
+//   methods: {
+//     async fetchExamData() {
+//       try {
+//         const response = await fetch('http://localhost:8080/api/de_thi');
+//         if (!response.ok) {
+//           throw new Error('Failed to fetch data from API');
+//         }
+//         this.examData = await response.json();
+//       } catch (error) {
+//         console.error(error);
+//       }
+//     },
+
+//     onExamDataImported(examData) {
+//       this.examData = examData;
+//     }
+//   }
+// };
 </script>
 
-<style>
-
-</style>
+<style></style>

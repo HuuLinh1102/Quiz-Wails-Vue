@@ -4,7 +4,10 @@ go 1.21
 
 toolchain go1.22.0
 
-require github.com/wailsapp/wails/v2 v2.8.0
+require (
+	github.com/wailsapp/wails/v2 v2.8.0
+	gorm.io/gorm v1.25.8
+)
 
 require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
@@ -39,7 +42,6 @@ require (
 	golang.org/x/net v0.20.0 // indirect
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	gorm.io/gorm v1.25.8
 )
 
 // replace github.com/wailsapp/wails/v2 v2.8.0 => C:\Users\taili\go\pkg\mod

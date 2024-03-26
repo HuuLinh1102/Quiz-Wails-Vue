@@ -1,12 +1,15 @@
 package main
 
 import (
+	"changeme/app/model"
+	"changeme/app/modules/auth"
+
+	"bufio"
 	"context"
 	"embed"
 	"fmt"
+	"os"
 	"strings"
-
-	"changeme/app/model"
 )
 
 //go:embed questions.txt
@@ -15,7 +18,7 @@ var questionsFile embed.FS
 // App struct
 type App struct {
 	ctx       context.Context
-	questions []model.Question // Dữ liệu câu hỏi
+	questions []model.Question
 }
 
 // NewApp creates a new App application struct
@@ -34,30 +37,65 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
+func (a *App) Login(idnum string) (res model.LoginResponse) {
+	ls := auth.LoginService{}
+
+	user, err := ls.Login(idnum)
+	if err != nil {
+		res = model.LoginResponse{
+			Message: err.Error(),
+			Status:  false,
+		}
+		return
+	}
+	res = model.LoginResponse{
+		Message: "Đăng nhập thành công",
+		Status:  true,
+		User:    &user,
+	}
+	return
+}
+
 // LoadQuestions loads questions from questions.txt file
 func (a *App) LoadQuestions() ([]model.Question, error) {
-	data, err := questionsFile.ReadFile("questions.txt")
+	file, err := os.Open("./questions.txt")
 	if err != nil {
 		return nil, err
 	}
+	defer file.Close()
 
-	lines := strings.Split(string(data), "\n")
-	var questions []model.Question
-	var q model.Question
-	for _, line := range lines {
+	scanner := bufio.NewScanner(file)
+	questions := []model.Question{}
+	question := model.Question{}
+	for scanner.Scan() {
+		line := scanner.Text()
 		if strings.HasPrefix(line, "Đáp án:") {
-			q.Answer = strings.TrimSpace(line[8:])
-			questions = append(questions, q)
-			q = model.Question{}
-		} else if len(line) > 0 && line[1] == '.' {
-			choice := model.Choice{Content: line[3:]}
-			q.Choices = append(q.Choices, choice)
+			question.Answer = strings.TrimSpace(line[11:])
+			questions = append(questions, question)
+			question = model.Question{}
+		} else if strings.HasPrefix(line, "A.") || strings.HasPrefix(line, "B.") || strings.HasPrefix(line, "C.") || strings.HasPrefix(line, "D.") {
+			question.Choices = append(question.Choices, model.Choice{Content: strings.TrimSpace(line)})
 		} else {
-			q.Content = line
+			question.Content = line
 		}
 	}
 
+	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+
 	return questions, nil
+}
+
+// CheckAnswer checks the answer of the given question from questions.txt file
+func (a *App) CheckAnswers(questions []model.Question, answers []string) int {
+	correctCount := 0
+	for i, question := range questions {
+		if question.Answer == answers[i] {
+			correctCount++
+		}
+	}
+	return correctCount
 }
 
 // GetQuestions returns the loaded questions
