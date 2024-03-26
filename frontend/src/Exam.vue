@@ -1,6 +1,6 @@
 <template>
   <div  v-if="examMetadata">
-    <h1 class="text-center">{{ examMetadata.ten_de_thi }}</h1>
+    <h1 class="text-center"></h1>
     <div class="" v-for="(question, index) in examQuestions" :key="index">
       <Question :question="question.noi_dung_cau_hoi" :choices="question.lua_chon" @answer-selected="updateSelectedAnswer(index, $event)" />
     
@@ -14,7 +14,7 @@
               <button @click="completeExam()" id="btn-nop-bai" class="btn btn-hero btn-primary" role="button"><i class="far fa-file-lines me-1"></i> Nộp bài</button>
           </div>
       </div>
-        <span class="score "v-if="showResults">{{ examResults }}</span>
+        <span class="score"v-if="showResults">{{ examResults }}</span>
       </div>
 </template>
 
@@ -57,11 +57,22 @@ export default {
   },
   methods: {
     updateSelectedAnswer(index, choice) {
+<<<<<<< HEAD
      this.examQuestions[index] = reactive({
         ...this.examQuestions[index],
         selectedAnswer: choice
       });
     },
+=======
+  this.examQuestions[index] = reactive({ ...this.examQuestions[index], selectedAnswer: choice });
+
+  this.examQuestions[index] = reactive({
+    ...this.examQuestions[index],
+    selectedAnswer: choice
+  });
+},
+
+>>>>>>> da1697b (fix)
     completeExam() {
     this.$swal.fire({
       title: "<p class='fs-3 mb-0'>Bạn có chắc chắn muốn nộp bài ?</p>",

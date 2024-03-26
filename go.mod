@@ -7,6 +7,11 @@ toolchain go1.22.0
 require github.com/wailsapp/wails/v2 v2.8.0
 
 require (
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
+)
+
+require (
 	github.com/bep/debounce v1.2.1 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
@@ -34,6 +39,7 @@ require (
 	golang.org/x/net v0.20.0 // indirect
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
+	gorm.io/gorm v1.25.8
 )
 
 // replace github.com/wailsapp/wails/v2 v2.8.0 => C:\Users\taili\go\pkg\mod

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // OKELA
+=======
+>>>>>>> da1697b (fix)
 <template>
   <div id="app">
     <Exam :examData="examData" />
@@ -6,36 +9,35 @@
 </template>
 
 <script>
-import Exam from './Exam.vue';
+import ExamVue from './Exam.Vue';
 
 export default {
   components: {
-    Exam
+    ExamVue
   },
   data() {
     return {
-      examData: {}
+      examData: {} // Khởi tạo examData là một đối tượng trống
     };
   },
   created() {
-    // Fetch data from API
-    this.fetchExamData();
+    // Gọi phương thức loadQuestions từ app.go để tải dữ liệu câu hỏi
+    this.loadQuestions();
   },
   methods: {
-    async fetchExamData() {
+    async loadQuestions() {
       try {
-        const response = await fetch('http://localhost:8080/api/de_thi');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data from API');
-        }
-        this.examData = await response.json();
+        // Gọi phương thức LoadQuestions từ app.go thông qua Wails
+        const response = await this.$wails.Call("LoadQuestions");
+        // Gán dữ liệu câu hỏi nhận được từ app.go vào examData
+        this.examData = { danh_sach_cau_hoi: response };
       } catch (error) {
-        console.error(error);
+        console.error('Error loading questions:', error);
       }
     }
   }
 };
-</script>  
+</script>
 
 <style>
 

@@ -1,9 +1,10 @@
 <template>
-  <div class="shadow-md rounded-5 bg-white question ">
-    <p class="">{{ question }}</p>
+  <div class="shadow-md rounded-5 bg-white question">
+    <p>{{ question.content }}</p>
     <ul>
-      <li v-for="(choice, index) in choices" :key="index" @click="selectAnswer(choice)">
-        <input v-model="selectedAnswer" :value="choice" type="radio"/> {{ choice }}
+      <li v-for="(choice, index) in question.choices" :key="index" @click="selectAnswer(choice)">
+        <input v-model="selectedAnswer" :value="choice.content" type="radio" :id="`choice-${index}`"/>
+        <label :for="`choice-${index}`">{{ choice.content }}</label>
       </li>
     </ul>
   </div>
@@ -12,8 +13,7 @@
 <script>
 export default {
   props: {
-    question: String,
-    choices: Array
+    question: Object // Thay đổi kiểu dữ liệu của question thành Object để phù hợp với dữ liệu truyền từ component cha
   },
   data() {
     return {
@@ -22,8 +22,8 @@ export default {
   },
   methods: {
     selectAnswer(choice) {
-      this.selectedAnswer = choice;
-      this.$emit('answer-selected', choice);
+      this.selectedAnswer = choice.content;
+      this.$emit('answer-selected', choice.content);
     }
   }
 };
@@ -35,5 +35,5 @@ export default {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
- }
+}
 </style>
